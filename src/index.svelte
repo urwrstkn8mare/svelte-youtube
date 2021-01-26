@@ -26,7 +26,8 @@
 
   let className;             // HTML class names for container element
   let playerElem;            // player DOM element reference
-  let player;                // player API instance
+  
+  export let player;         // player API instance (bind)
 
   // Create and tear down player as component mounts or unmounts
   onMount(() => createPlayer());
@@ -70,7 +71,6 @@
    * https://developers.google.com/youtube/iframe_api_reference#onReady
    *
    * @param {Object} event
-   *   @param {Object} target - player object
    */
   function onPlayerReady(event) {
     dispatch('ready', event);
@@ -84,7 +84,6 @@
    *
    * @param {Object} event
    *   @param {Integer} data  - error type
-   *   @param {Object} target - player object
    */
   function onPlayerError(event) {
     dispatch('error', event);
@@ -95,7 +94,6 @@
    *
    * @param {Object} event
    *   @param {Integer} data  - status change type
-   *   @param {Object} target - actual YT player
    */
   function onPlayerStateChange(event) {
     dispatch('stateChange', event)
@@ -122,7 +120,6 @@
    *
    * @param {Object} event
    *   @param {Float} data    - playback rate
-   *   @param {Object} target - actual YT player
    */
   function onPlayerPlaybackRateChange(event) {
     dispatch('playbackRateChange', event);
@@ -133,7 +130,6 @@
    *
    * @param {Object} event
    *   @param {String} data   - playback quality
-   *   @param {Object} target - actual YT player
    */
   function onPlayerPlaybackQualityChange(event) {
     dispatch('playbackQualityChange', event);
